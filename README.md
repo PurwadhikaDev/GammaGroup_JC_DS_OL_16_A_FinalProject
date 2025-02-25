@@ -67,8 +67,73 @@ Target:
 
 ## **Business Calculation**
 
+Bila seandainya biaya untuk reservasi kamar standard sebesar 100,42 Euro (Berdasarkan ADR kamar tipe standar yang paling murah) dan andaikan jumlah reservasi yang hotel dapatkan untuk suatu kurun waktu sebanyak 200 (dimana andaikan 100 Cancelled dan 100 tidak canceled), maka hitungannya kurang lebih seperti ini:
+
+**1. Tanpa Model (Semua Reservasi Diproses Seperti Biasa)**
+
+Jika tidak ada model prediksi, maka semua reservasi akan diproses tanpa mempertimbangkan kemungkinan pembatalan.
+-	Pendapatan Potensial (Jika semua menginap)
+200 x 100,42 = 20.084 euro
+-	Kerugian Akibat Pembatalan
+100 x 100,42 = 10.042 euro
+-	Pendapatan Aktual setelah Pembatalan
+20.084 – 10.042 = 10.042 euro
+Tanpa model, kerugian akibat pembatalan mencapai 10.042 euro 
+
+**2. Dengan Model Prediksi Pembatalan**
+-	Recall canceled 72%, maka model dapat mengidentifikasi 72% dari 100 reservasi yang akan dibatalkan (72 reservasi).
+-	Recall untuk non-canceled 76%, maka Model dapat mengidentifikasi 76% dari 100 reservasi yang benar-benar tidak akan dibatalkan (76 reservasi).
+-	False positive (reservasi yang sebenarnya tidak dibatalkan tetapi diprediksi akan dibatalkan) = 24% (24 reservasi).
+-	False negative (reservasi yang sebenarnya dibatalkan tetapi diprediksi tidak akan dibatalkan) = 28% (28 reservasi).
+
+**3. Prediksi model**
+
+**1. Reservasi yang diprediksi akan dibatalkan (Positif model)**
+
+72% x 100 = 72 Reservasi
+-	Apabila hotel bisa menawarkan promosi (misal diskon atau fleksibilitas re-schedule) untuk mengurangi pembatalan dan berhasil mempertahankan 30% pelanggan, maka: 30% x 72 = 22 reservasi tetap menginap
+-	Pendapatan tambahan dari pelanggan yang tetap meinginap: 22 x 100,42 = 2.209,24 euro
+
+**2. Reservasi yang salah diprediksi (Actual tidak canceled, prediksi canceled) (False positive)**
+
+24% x 100 = 24 reservasi
+
+**3. Reservasi yang salah diprediksi (Actual Canceled, prediksi tidak canceled) (False negative)**
+
+29% x 100 = 29 reservasi
+-	Pendapatan yang hilang akibat pembatalan ini: 28 x 100,42 = 2.811,76 euro
+
+**4. Pendapatan setelah menggunakan model**
+-	Pendapatan dari reservasi non-canceled tetap: 100 x 100,42 = 10,042 euro
+-	Pendapatan tambahan dari reservasi yang berhasil di selamatkan: 2.209,24 euro
+-	Total pendapatan setelah strategi mitigasi: 10.042 + 2.209,24 = 12.219,282 euro
+-	Kerugian akibat false negatives yang tidak dapat diselamatkan: 2.811,76 euro
+
 ## **Kesimpulan**
+-	Tanpa model, pendapatan 10.042 euro, dengan kerugian 10.042 euro akibat pembatalan.
+-	Dengan model, pendapatan meningkat menjadi 12.219,282 euro, karena model memungkinkan hotel mempertahankan 22 reservasi yang seharusnya dibatalkan.
+-	Penghematan sebesar 2.209,24 euro dengan strategi mitigasi berdasarkan prediksi model.
+-	Model masih memiliki false negatives, yang menyebabkan kerugian 2.811,76 euro.
 
 ## **Rekomendasi**
+### **Rekomendasi Model**
 
+Untuk dapat meningkatkan recall, dapat dilakukan:
+-	**Kumpulkan lebih banyak data**, Khususnya dalam kasus ketidakseimbangan target, sebaiknya jumlah data pemesanan yang dibatalkan lebih seimbang dengan data pemesanan yang tidak dibatalkan, jika memungkinkan.
+-	**Penyesuaian threshold prediksi (misalnya menurunkan dari 0.5 ke 0.4).**
+-	**Menggunakan model balancing lain seperti focal loss atau cost-sensitive learning.**
+-	**Melakukan hyperparameter tuning lebih lanjut untuk meningkatkan recall.**
+
+### **Rekomendasi Bisnis**
+- Membuat kebijakan untuk pemberian voucher pada tamu dengan lead time lebih dari 25 hari.
+- Membuat kebijakan baru untuk harga kamar saat high season dan low season.
+- Pembuatan kesepakatan baru terkait deposit dengan TA/TO serta GDS. 
+- Memastikan kelengkapan informasi mengenai fasilitas, layanan, dan keunggulan hotel di website.
+- Menetapkan syarat pembatalan untuk reservasi, dimana tamu wajib memberikan review atau alasan pembatalan.
+- Menetapkan kebijakan baru untuk biaya deposit saat memesan langsung pada pihak hotel (Melalui Website resmi hotel maupun datang secara langsung ke hotel).
+- Menggunakan model machine learning yang telah dibuat sebagai solusi untuk menentukan strategi pemasaran yang tepat sasaran.
+
+### **Link Tautan**
+- Link tableau : https://public.tableau.com/app/profile/aldira.putri.damayanti/viz/FinalProjectGamma/Dashboard1
+- Gambar tableau : 
 ---
