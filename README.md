@@ -135,5 +135,4 @@ Untuk dapat meningkatkan recall, dapat dilakukan:
 
 ### **Link Tautan**
 - Link tableau : https://public.tableau.com/app/profile/aldira.putri.damayanti/viz/FinalProjectGamma/Dashboard1
-- Gambar tableau : 
----
+  ![Image](https://github.com/user-attachments/assets/60153b5f-f25c-48b9-a585-153c8a1b1adc)
