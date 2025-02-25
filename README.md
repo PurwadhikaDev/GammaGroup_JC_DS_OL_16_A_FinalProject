@@ -134,5 +134,6 @@ Untuk dapat meningkatkan recall, dapat dilakukan:
 - Menggunakan model machine learning yang telah dibuat sebagai solusi untuk menentukan strategi pemasaran yang tepat sasaran.
 
 ### **Link Tautan**
+- Link streamlit : https://finalprojectgamma.streamlit.app/
 - Link tableau : https://public.tableau.com/app/profile/aldira.putri.damayanti/viz/FinalProjectGamma/Dashboard1
   ![Image](https://github.com/user-attachments/assets/60153b5f-f25c-48b9-a585-153c8a1b1adc)
